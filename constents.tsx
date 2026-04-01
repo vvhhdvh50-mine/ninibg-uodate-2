@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-export const isTestnet = false;
+export const isTestnet = true;
 export const isAdmin = false;
 
 // Set to false to bypass balance validation (useful for testing on mainnet without balance)

@@ -6,7 +6,7 @@ import { bscTestnet, sepolia, polygonMumbai, AppKitNetwork, bsc, mainnet, polygo
 import { isTestnet } from '@/constents'
 
 // Get projectId from https://dashboard.reown.com
-export const projectId = "da07e79aec72cd19c8f49dd564b40a4c"
+export const projectId = "d36262108f1be470f76cfedd2c92653c"
 
 if (!projectId) {
   throw new Error('Project ID is not defined')

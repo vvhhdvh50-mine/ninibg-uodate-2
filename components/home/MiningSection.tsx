@@ -415,7 +415,7 @@ export default function MiningSection() {
           <div className="grid grid-cols-2 gap-2 mt-3">
             <div className="bg-purple-50 rounded-lg p-2">
               <p className="text-[11px] text-purple-700 font-semibold uppercase">Total Mined</p>
-              <p className="text-sm font-bold text-purple-900"><AnimatedNumber value={miningTotals.totalMined} decimals={6} /></p>
+              <p className="text-sm font-bold text-purple-900"><AnimatedNumber value={miningTotals.totalMined} decimals={2} /></p>
             </div>
             <div className="bg-purple-50 rounded-lg p-2">
               <p className="text-[11px] text-purple-700 font-semibold uppercase">Total Rewards</p>

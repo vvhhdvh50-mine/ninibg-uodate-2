@@ -70,7 +70,7 @@ export default function IconButtons() {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-base font-bold text-gray-900">Contact Support</h3>
-                  <p className="text-xs text-gray-400 mt-0.5">Choose your preferred channel</p>
+                  <p className="text-xs text-gray-400 mt-0.5">Choose your preferred Platform</p>
                 </div>
                 <button
                   aria-label="Close"

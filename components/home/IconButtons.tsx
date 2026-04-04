@@ -85,7 +85,7 @@ export default function IconButtons() {
             {/* Channels */}
             <div className="px-5 pb-6 space-y-3">
               <a
-                href="https://wa.me/"
+                href="https://wa.me/14795260730"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 p-4 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-green-50 hover:border-green-200 transition-all duration-200"
@@ -101,7 +101,7 @@ export default function IconButtons() {
               </a>
 
               <a
-                href="https://t.me/approveminer"
+                href="https://t.me/alpha_miningbot"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 p-4 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 transition-all duration-200"

@@ -100,7 +100,7 @@ export default function AboutPage() {
     <div className="p-3 space-y-3 pb-6">
       {/* Hero Section */}
       <div className="bg-linear-to-br from-indigo-500 to-purple-600 rounded-2xl p-5 text-white">
-        <h1 className="text-2xl font-bold mb-2">About ApproveMiner</h1>
+        <h1 className="text-2xl font-bold mb-2">About Alpha Mining</h1>
         <p className="text-sm text-indigo-100 leading-relaxed">
           We are a leading decentralized mining platform that enables users to participate in cryptocurrency mining without the need for expensive hardware or technical expertise.
         </p>

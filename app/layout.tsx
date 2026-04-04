@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ApproveMiner - Crypto Mining",
+  title: "Alpha Mining - Crypto Mining",
   description: "24 Hour Automatic Mining Platform",
 };
 

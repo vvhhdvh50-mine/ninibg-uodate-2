@@ -61,7 +61,7 @@ export default function TeamPage() {
       <div className="bg-linear-to-br from-blue-500 to-indigo-600 rounded-2xl p-5 text-white">
         <h1 className="text-2xl font-bold mb-2">Our Team</h1>
         <p className="text-sm text-blue-100">
-          Meet the talented individuals driving innovation and success at ApproveMiner
+          Meet the talented individuals driving innovation and success at Alpha Mining
         </p>
       </div>
 

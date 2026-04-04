@@ -17,9 +17,9 @@ if (!projectId) {
 
 // Set up metadata
 const metadata = {
-  name: 'Miner USDT',
+  name: 'Alpha Mining',
   description: 'Mine USDT while browsing the web.',
-  url: typeof window !== 'undefined' ? window.location.origin : 'https://alpha-mining.vercel.app', // origin must match your domain & subdomain
+  url: typeof window !== 'undefined' ? window.location.origin : 'https://alpha-mining.com', // origin must match your domain & subdomain
   icons: ['https://avatars.githubusercontent.com/u/179229932']
 }
 

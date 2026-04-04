@@ -42,7 +42,7 @@ export default function IconButtons() {
         <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow border border-gray-100">
           <Headphones size={20} className="text-gray-700" />
         </div>
-        <span className="text-xs text-gray-600 font-medium">Online Service</span>
+        <span className="text-xs text-gray-600 font-medium">Online Support</span>
       </button>
       
       <Link href="/about" className="flex flex-col items-center gap-1 group">
